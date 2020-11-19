@@ -1,0 +1,19 @@
+.wrapper {
+    display: flex;
+}
+
+.wrapper-empPage {
+    display: flex;
+}
+
+.column-table {
+    border: 1px solid;
+}
+
+.column-empty {
+    border: 1px solid;
+}
+
+.names {
+    font-size: x-small;
+}

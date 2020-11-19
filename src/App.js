@@ -8,7 +8,7 @@ import {
 
 import './App.css'
 
-import { EmployeesPage } from './features/employees/EmployeesPage'
+import { Employees } from './features/employees/Employees'
 
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/employees" component={EmployeesPage} />
+          <Route exact path="/employees" component={Employees} />
           <Redirect to="/employees" />
         </Switch>
       </Router>
