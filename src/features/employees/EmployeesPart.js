@@ -1,21 +1,25 @@
-import { useEffect, useState } from 'react'
-
-
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { actionData, selectData } from './employeesSlice'
 import { mainUrl, alphaBet } from '../../app/helpers'
 
-
 export const EmployeesPart = () => {
-  const [workers, setWorkers] = useState([])
+  const dispatch = useDispatch()
+  const workers = useSelector(selectData)
 
   const table = alphaBet.map(letter => {
     if (workers.find(worker => worker.lastName.substring(0, 1) === letter)) {
       return (
-        <div className="column-table">
+        <div className="column-table" key={letter}>
           <p>{letter}</p>
           {
             workers.map(worker => {
               if (worker.lastName.substring(0, 1) === letter) {
-                return <p className="names">{worker.lastName} {worker.firstName}</p>
+                return (
+                  <p className="names" key={worker.id}>
+                    {worker.lastName} {worker.firstName}
+                  </p>
+                )
               }
             })
           }
@@ -23,7 +27,7 @@ export const EmployeesPart = () => {
       )
     } else {
       return (
-        <div className="column-empty">
+        <div className="column-empty" key={letter}>
           <p>{letter}</p>
           <p>---</p>
         </div>
@@ -32,10 +36,17 @@ export const EmployeesPart = () => {
   })
 
   useEffect(() => {
-    fetch(mainUrl)
-      .then(response => response.json())
-      .then(result => setWorkers(result))
-  }, [])
+    const fetchData = () => dispatch => {
+      try {
+        fetch(mainUrl)
+          .then(response => response.json())
+          .then(result => dispatch(actionData(result)))
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    dispatch(fetchData())
+  }, [dispatch])
 
 
 
