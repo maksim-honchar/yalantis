@@ -1,14 +1,7 @@
 import { useEffect, useState } from 'react'
 
-import { mainUrl } from '../../app/mainUrl'
+import { mainUrl, alphaBet } from '../../app/helpers'
 
-
-// const workersSort = workers.sort((a, b) => a.lastName.localeCompare(b.lastName))
-
-const alphaBet = [
-  "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
-  "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
-]
 
 
 export const EmployeesPage = () => {

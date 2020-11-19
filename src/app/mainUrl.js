@@ -1,1 +1,0 @@
-export const mainUrl = 'https://yalantis-react-school-api.yalantis.com/api/task0/users'
