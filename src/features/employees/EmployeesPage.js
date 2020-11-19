@@ -14,19 +14,25 @@ const alphaBet = [
 export const EmployeesPage = () => {
   const [workers, setWorkers] = useState([])
 
-  const allSorts = alphaBet.map(letter =>
-    <div style={{ border: '1px solid', padding: 5 }}>
-      <p>{letter}</p>
-      <p>
+  const allSorts = alphaBet.map(letter => {
+    if (workers.find(worker => worker.lastName.substring(0, 1) === letter)) {
+      return <div style={{ border: '1px solid', padding: 5 }}>
+        {letter}
         {
-          workers
-            .filter(employer => employer.lastName.substring(0, 1) === letter)
-            .map(employer => <p>{employer.lastName} {employer.firstName}</p>)
+          workers.map(employer => {
+            if (employer.lastName.substring(0, 1) === letter) {
+              return <p>{employer.lastName}</p>
+            }
+          })
         }
-      </p>
-    </div>
-  )
-
+      </div>
+    } else {
+      return <div style={{ border: '1px solid', padding: 5 }}>
+        {letter}
+        {<p>---</p>}
+      </div>
+    }
+  })
 
   useEffect(() => {
     fetch(mainUrl)
@@ -42,7 +48,7 @@ export const EmployeesPage = () => {
       <div style={{ display: 'flex' }}>
         {allSorts}
       </div>
-
     </section>
   )
 }
+
