@@ -7,6 +7,17 @@ export const EmployeesPart = () => {
   const dispatch = useDispatch()
   const workers = useSelector(selectData)
 
+  const toggleCheckbox = id => {
+    const updateWorkers = workers.map(worker => {
+      if (worker.id === id) {
+        return { ...worker, check: !worker.check }
+      } else {
+        return worker
+      }
+    })
+    dispatch(actionData(updateWorkers))
+  }
+
   const table = alphaBet.map(letter => {
     if (workers.find(worker => worker.lastName.substring(0, 1) === letter)) {
       return (
@@ -17,11 +28,22 @@ export const EmployeesPart = () => {
               if (worker.lastName.substring(0, 1) === letter) {
                 return (
                   <div key={worker.id}>
-                    <label htmlFor="names">{worker.lastName} {worker.firstName}</label>
-                    <input type="checkbox" defaultChecked={worker.check} id="names" name="names" />
+                    <label
+                      htmlFor={`${worker.lastName} ${worker.firstName}`}
+                    >
+                      {worker.lastName} {worker.firstName}
+                    </label>
+                    <input
+                      type="checkbox"
+                      defaultChecked={worker.check}
+                      id={worker.id}
+                      name={`${worker.lastName} ${worker.firstName}`}
+                      onChange={() => toggleCheckbox(worker.id)}
+                    />
                   </div>
                 )
               }
+              return null
             })
           }
         </div>
