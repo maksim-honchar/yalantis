@@ -16,9 +16,10 @@ export const EmployeesPart = () => {
             workers.map(worker => {
               if (worker.lastName.substring(0, 1) === letter) {
                 return (
-                  <p className="names" key={worker.id}>
-                    {worker.lastName} {worker.firstName}
-                  </p>
+                  <div key={worker.id}>
+                    <label htmlFor="names">{worker.lastName} {worker.firstName}</label>
+                    <input type="checkbox" defaultChecked={worker.check} id="names" name="names" />
+                  </div>
                 )
               }
             })
@@ -27,7 +28,7 @@ export const EmployeesPart = () => {
       )
     } else {
       return (
-        <div className="column-empty" key={letter}>
+        <div className="column-table" key={letter}>
           <p>{letter}</p>
           <p>---</p>
         </div>
@@ -36,11 +37,12 @@ export const EmployeesPart = () => {
   })
 
   useEffect(() => {
-    const fetchData = () => dispatch => {
+    const fetchData = () => async dispatch => {
       try {
-        fetch(mainUrl)
-          .then(response => response.json())
-          .then(result => dispatch(actionData(result)))
+        const request = await fetch(mainUrl)
+        const response = await request.json()
+        response.forEach(worker => Object.assign(worker, { check: false }))
+        dispatch(actionData(response))
       } catch (error) {
         console.log(error)
       }

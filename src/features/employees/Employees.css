@@ -1,19 +1,21 @@
 .wrapper {
     display: flex;
+    padding: 10px;
+    /* justify-content: center;
+    align-items: center; */
 }
 
 .wrapper-empPage {
     display: flex;
+    flex-wrap: wrap;
+    width: 90%;
 }
 
 .column-table {
     border: 1px solid;
+    width: 165px;
+    text-align: left;
+    padding: 10px;
 }
 
-.column-empty {
-    border: 1px solid;
-}
 
-.names {
-    font-size: x-small;
-}
