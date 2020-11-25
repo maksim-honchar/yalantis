@@ -1,7 +1,9 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { actionData, selectData } from './employeesSlice'
-import { mainUrl, alphaBet } from '../../app/helpers'
+import { mainUrl, alphaBet } from '../../app/utils'
+
+import { loadState } from '../../app/sessionStorage'
 
 export const EmployeesPart = () => {
   const dispatch = useDispatch()
@@ -58,18 +60,26 @@ export const EmployeesPart = () => {
     }
   })
 
+
+  const persistedState = loadState()
+
   useEffect(() => {
-    const fetchData = () => async dispatch => {
-      try {
-        const request = await fetch(mainUrl)
-        const response = await request.json()
-        response.forEach(worker => Object.assign(worker, { check: false }))
-        dispatch(actionData(response))
-      } catch (error) {
-        console.log(error)
+    if (persistedState) {
+      dispatch(actionData(persistedState.employees.data))
+    } else {
+      const fetchData = () => async dispatch => {
+        try {
+          const request = await fetch(mainUrl)
+          const response = await request.json()
+          response.forEach(worker => Object.assign(worker, { check: false }))
+          dispatch(actionData(response))
+        } catch (error) {
+          console.log(error)
+        }
       }
+      dispatch(fetchData())
     }
-    dispatch(fetchData())
+
   }, [dispatch])
 
 
