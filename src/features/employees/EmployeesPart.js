@@ -60,10 +60,8 @@ export const EmployeesPart = () => {
     }
   })
 
-
-  const persistedState = loadState()
-
   useEffect(() => {
+    const persistedState = loadState()
     if (persistedState) {
       dispatch(actionData(persistedState.employees.data))
     } else {
@@ -79,14 +77,12 @@ export const EmployeesPart = () => {
       }
       dispatch(fetchData())
     }
-
   }, [dispatch])
-
 
 
   return (
     <section>
-      <h2>Employees Page</h2>
+      <h2>Employees Part</h2>
       <div className="wrapper-empPage">
         {table}
       </div>
