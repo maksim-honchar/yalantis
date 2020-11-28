@@ -1,14 +1,12 @@
 .wrapper {
     display: flex;
-    padding: 10px;
-    /* justify-content: center;  */
-    /* align-items: center;  */
+    /* padding: 10px; */
 }
 
 .wrapper-empPage {
     display: flex;
     flex-wrap: wrap;
-    width: 90%;
+    border: 1px solid red;
 }
 
 .column-table {
@@ -16,6 +14,12 @@
     width: 165px;
     text-align: left;
     padding: 10px;
+}
+
+.wrapper-dob {
+    border: 1px solid;
+    min-height: 100vh;
+    width: 250px;
 }
 
 

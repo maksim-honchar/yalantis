@@ -24,7 +24,7 @@ export const EmployeesPart = () => {
     if (workers.find(worker => worker.lastName.substring(0, 1) === letter)) {
       return (
         <div className="column-table" key={letter}>
-          <p>{letter}</p>
+          <h5>{letter}</h5>
           {
             workers.map(worker => {
               if (worker.lastName.substring(0, 1) === letter) {
@@ -53,7 +53,7 @@ export const EmployeesPart = () => {
     } else {
       return (
         <div className="column-table" key={letter}>
-          <p>{letter}</p>
+          <h5>{letter}</h5>
           <p>---</p>
         </div>
       )
@@ -82,7 +82,7 @@ export const EmployeesPart = () => {
 
   return (
     <section>
-      <h2>Employees Part</h2>
+      <h3>Employees</h3>
       <div className="wrapper-empPage">
         {table}
       </div>
