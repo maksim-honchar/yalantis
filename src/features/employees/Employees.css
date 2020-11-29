@@ -66,7 +66,6 @@
 
 .heading-dob {
     background-color: var(--bordo-bg);
-    border-bottom: 1px solid var(--dark-bg);
 }
 
 .dob-content {
@@ -78,5 +77,5 @@
 }
 
 .dob-div {
-    border-bottom: 1px solid #fafafa;
+    border-bottom: 1px solid var(--dark-bg);
 }
