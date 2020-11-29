@@ -20,9 +20,11 @@ export const BirthdayPart = () => {
         .map((month, index) => {
             if (workers.find(worker => month === (months[Number(worker.dob.substring(5, 7)) - 1]) && worker.check)) {
                 return (
-                    <div key={index}>
-                        <h5>{month}</h5>
-                        <div>
+                    <div className="dob-div" key={index}>
+                        <p>
+                            <span className="dob-title">{month}</span>
+                        </p>
+                        <div className="dob-content">
                             {
                                 workers
                                     .filter(worker => worker.check)
@@ -55,10 +57,12 @@ export const BirthdayPart = () => {
 
     return (
         <section>
-            <h3>Employees birthday​</h3>
+            <div className="heading heading-dob">
+                <h2>Employees birthday​</h2>
+            </div>
             <div className="wrapper-dob">
                 {
-                    isSelect ? table : <p><strong>No selected employees</strong></p>
+                    isSelect ? table : <p><span className="dob-title">No selected employees</span></p>
                 }
             </div>
         </section>

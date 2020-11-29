@@ -23,13 +23,18 @@ export const EmployeesPart = () => {
   const table = alphaBet.map(letter => {
     if (workers.find(worker => worker.lastName.substring(0, 1) === letter)) {
       return (
-        <div className="column-table" key={letter}>
-          <h5>{letter}</h5>
+        <div className="card" key={letter}>
+          <div className="title-card">
+            <p>
+              <strong>{letter}</strong>
+            </p>
+          </div>
+
           {
             workers.map(worker => {
               if (worker.lastName.substring(0, 1) === letter) {
                 return (
-                  <div key={worker.id}>
+                  <div key={worker.id} className="card-content">
                     <label
                       htmlFor={`${worker.lastName} ${worker.firstName}`}
                     >
@@ -52,9 +57,15 @@ export const EmployeesPart = () => {
       )
     } else {
       return (
-        <div className="column-table" key={letter}>
-          <h5>{letter}</h5>
-          <p>---</p>
+        <div className="card" key={letter}>
+          <div className="title-card">
+            <p>
+              <strong>{letter}</strong>
+            </p>
+          </div>
+          <div className="card-content">
+            <strong>- - -</strong>
+          </div>
         </div>
       )
     }
@@ -82,7 +93,9 @@ export const EmployeesPart = () => {
 
   return (
     <section>
-      <h3>Employees</h3>
+      <div className="heading">
+        <h2>Employees</h2>
+      </div>
       <div className="wrapper-empPage">
         {table}
       </div>
