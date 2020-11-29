@@ -1,15 +1,14 @@
-import React from 'react'
+import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
-} from "react-router-dom"
+} from "react-router-dom";
 
-import './App.css'
+import "./App.css";
 
-import { Employees } from './features/employees/Employees'
-
+import { Employees } from "./features/employees/Employees";
 
 function App() {
   return (
@@ -21,7 +20,7 @@ function App() {
         </Switch>
       </Router>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
