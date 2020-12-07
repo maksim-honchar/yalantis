@@ -13,12 +13,13 @@ import { Employees } from "./features/employees/Employees";
 function App() {
   return (
     <div className="App">
-      <Router>
+      {/* <Router>
         <Switch>
           <Route exact path="/employees" component={Employees} />
           <Redirect to="/employees" />
         </Switch>
-      </Router>
+      </Router> */}
+      <Employees />
     </div>
   );
 }
